@@ -7,6 +7,10 @@ android {
     namespace = "com.example.af_viewmodel_event_sample"
     compileSdk = 34
 
+    dataBinding {
+        enable = true
+    }
+
     defaultConfig {
         applicationId = "com.example.af_viewmodel_event_sample"
         minSdk = 28
