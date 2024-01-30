@@ -22,6 +22,10 @@ class MainActivity : BaseActivity() {
         binding.liveEventDataButton.setOnClickListener {
             startActivity(Intent(this, EventLiveDataActivity::class.java))
         }
+
+        binding.singleLiveDataButton.setOnClickListener {
+            startActivity(Intent(this, SingleLiveDataActivity::class.java))
+        }
     }
 
     override fun initObserve() {
