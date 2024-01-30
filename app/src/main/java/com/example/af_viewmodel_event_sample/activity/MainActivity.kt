@@ -26,9 +26,9 @@ class MainActivity : BaseActivity() {
         binding.singleLiveDataButton.setOnClickListener {
             startActivity(Intent(this, SingleLiveDataActivity::class.java))
         }
-    }
 
-    override fun initObserve() {
-
+        binding.stateFlowButton.setOnClickListener {
+            startActivity(Intent(this, StateFlowActivity::class.java))
+        }
     }
 }

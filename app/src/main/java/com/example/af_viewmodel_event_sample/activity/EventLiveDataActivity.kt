@@ -18,6 +18,7 @@ class EventLiveDataActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        initObserve()
     }
 
     override fun initUi() {
@@ -26,7 +27,7 @@ class EventLiveDataActivity : BaseActivity() {
         }
     }
 
-    override fun initObserve() {
+    private fun initObserve() {
         lifecycleScope.launch {
             viewModel.someData.observe(this@EventLiveDataActivity) {
                 startActivity(Intent(this@EventLiveDataActivity, TestActivity::class.java))

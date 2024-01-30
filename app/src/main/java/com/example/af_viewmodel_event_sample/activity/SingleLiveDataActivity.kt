@@ -18,6 +18,7 @@ class SingleLiveDataActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        initObserve()
     }
 
     override fun initUi() {
@@ -26,7 +27,7 @@ class SingleLiveDataActivity : BaseActivity() {
         }
     }
 
-    override fun initObserve() {
+    private fun initObserve() {
         val intent = Intent(this, TestActivity::class.java)
         lifecycleScope.launch {
             viewModel.someData.observe(this@SingleLiveDataActivity) {
