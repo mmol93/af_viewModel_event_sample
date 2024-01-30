@@ -6,16 +6,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.af_viewmodel_event_sample.R
-import com.example.af_viewmodel_event_sample.databinding.ActivityLiveDataBinding
+import com.example.af_viewmodel_event_sample.databinding.ActivityEventLiveDataBinding
 import com.example.af_viewmodel_event_sample.extensions.dataBinding
-import com.example.af_viewmodel_event_sample.viewModels.LiveDataViewModel
+import com.example.af_viewmodel_event_sample.viewModels.EventLiveDataViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class LiveDataActivity : BaseActivity() {
-    private val binding by dataBinding<ActivityLiveDataBinding>(R.layout.activity_live_data)
-    private val viewModel by viewModels<LiveDataViewModel>()
-
+class EventLiveDataActivity : BaseActivity() {
+    private val binding by dataBinding<ActivityEventLiveDataBinding>(R.layout.activity_event_live_data)
+    private val viewModel by viewModels<EventLiveDataViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,15 +28,16 @@ class LiveDataActivity : BaseActivity() {
 
     override fun initObserve() {
         lifecycleScope.launch {
-            viewModel.someData.observe(this@LiveDataActivity) {
-                startActivity(Intent(this@LiveDataActivity, TestActivity::class.java))
-                Timber.d("observed data: $it")
+            viewModel.someData.observe(this@EventLiveDataActivity) {
+                startActivity(Intent(this@EventLiveDataActivity, TestActivity::class.java))
+                Timber.d("observed data: ${it.getContentIfNotHandled()}")
             }
         }
     }
 
     override fun onResume() {
         super.onResume()
-        Timber.i("current Data: ${viewModel.someData.value}")
+        Timber.i("current data: ${viewModel.someData.value?.getContentIfNotHandled()}")
+        Timber.i("peek data: ${viewModel.someData.value?.peekContent()}")
     }
 }
