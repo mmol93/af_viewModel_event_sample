@@ -32,6 +32,9 @@ class SharedSealedActivity : BaseActivity() {
             viewModel.setThirdData()
             startActivity(Intent(this, TestActivity::class.java))
         }
+        binding.delay.setOnClickListener {
+            viewModel.setDelayedData()
+        }
     }
 
     private fun initObserve() {
@@ -48,6 +51,10 @@ class SharedSealedActivity : BaseActivity() {
 
                     is StateFlowEventViewModel.SharedFlowEvent.ThirdData -> {
                         Timber.d("observed third data: $it")
+                    }
+
+                    is StateFlowEventViewModel.SharedFlowEvent.DelayedData -> {
+                        Timber.d("observed delayed data: $it")
                     }
                 }
             }
