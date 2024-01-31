@@ -30,5 +30,9 @@ class MainActivity : BaseActivity() {
         binding.stateFlowButton.setOnClickListener {
             startActivity(Intent(this, StateFlowActivity::class.java))
         }
+
+        binding.sharedSealedButton.setOnClickListener {
+            startActivity(Intent(this, SharedSealedActivity::class.java))
+        }
     }
 }
