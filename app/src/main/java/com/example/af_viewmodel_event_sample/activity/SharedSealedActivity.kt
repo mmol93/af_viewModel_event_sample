@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.af_viewmodel_event_sample.R
 import com.example.af_viewmodel_event_sample.databinding.ActivityStateSealedBinding
 import com.example.af_viewmodel_event_sample.extensions.dataBinding
+import com.example.af_viewmodel_event_sample.extensions.repeatOnStarted
 import com.example.af_viewmodel_event_sample.viewModels.StateFlowEventViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -33,7 +34,7 @@ class SharedSealedActivity : BaseActivity() {
             startActivity(Intent(this, TestActivity::class.java))
         }
         binding.delay.setOnClickListener {
-            viewModel.setDelayedData()
+            viewModel.setDelayedData1()
         }
     }
 
@@ -54,8 +55,15 @@ class SharedSealedActivity : BaseActivity() {
                     }
 
                     is StateFlowEventViewModel.SharedFlowEvent.DelayedData -> {
-                        Timber.d("observed delayed data: $it")
+                        Timber.d("observed delayed data1: $it")
                     }
+                }
+            }
+        }
+        repeatOnStarted {
+            viewModel.eventFlow.collect {
+                if (it is StateFlowEventViewModel.SharedFlowEvent.DelayedData) {
+                    Timber.d("observed delayed data2: $it")
                 }
             }
         }

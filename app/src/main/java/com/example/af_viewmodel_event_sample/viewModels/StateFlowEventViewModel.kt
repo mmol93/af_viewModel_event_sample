@@ -23,9 +23,9 @@ class StateFlowEventViewModel : ViewModel() {
         emitEvent(SharedFlowEvent.ThirdData(true))
     }
 
-    fun setDelayedData() {
+    fun setDelayedData1() {
         viewModelScope.launch {
-            delay(3000L)
+            delay(5000L)
             _eventFlow.emit(SharedFlowEvent.DelayedData("Delayed"))
         }
     }
@@ -40,7 +40,6 @@ class StateFlowEventViewModel : ViewModel() {
         data class FirstData(val number: Int) : SharedFlowEvent()
         data class SecondData(val text: String) : SharedFlowEvent()
         data class ThirdData(val ox: Boolean) : SharedFlowEvent()
-
         data class DelayedData(val text: String) : SharedFlowEvent()
     }
 }
