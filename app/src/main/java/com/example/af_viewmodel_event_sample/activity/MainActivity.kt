@@ -34,5 +34,8 @@ class MainActivity : BaseActivity() {
         binding.sharedSealedButton.setOnClickListener {
             startActivity(Intent(this, SharedSealedActivity::class.java))
         }
+        binding.eventSealedLifecycleButton.setOnClickListener {
+            startActivity(Intent(this, EventFlowActivity::class.java))
+        }
     }
 }
